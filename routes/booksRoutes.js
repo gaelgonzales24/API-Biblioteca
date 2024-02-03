@@ -5,12 +5,9 @@ const authorsController = require('../controllers/authorsController');
 
 router.post('/', (req, res) => {
   const newBook = req.body;
-  const authorsIds = newBook.authors; // Asumiendo que en el cuerpo de la solicitud se proporcionan los IDs de los autores asociados
-
-  // Agregar el libro y obtener su ID
+  const authorsIds = newBook.authors;
   const bookId = booksController.addBook(newBook);
 
-  // Asociar autores al libro en la tabla de relaciones
   if (authorsIds && Array.isArray(authorsIds)) {
     authorsIds.forEach((authorId) => {
       booksController.addBookAuthorRelation(bookId, authorId);
