@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 app.use('/books', booksRoutes);
 app.use('/authors', authorsRoutes);
+app.use('/books/bookAuthorRelations', booksRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

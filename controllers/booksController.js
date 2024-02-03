@@ -53,8 +53,26 @@ const addBookAuthorRelation = (bookId, authorId) => {
   }
 };
 
+const getBookAuthorRelations = () => {
+  try {
+    const rawData = fs.readFileSync(dbPath);
+    const data = JSON.parse(rawData);
+
+    const authorsAndBooks = data.books.map(book => ({
+      author: book.nameAuthor,
+      book: book.title,
+    }));
+
+    return authorsAndBooks || [];
+  } catch (error) {
+    console.error('Error parsing JSON:', error.message);
+    return [];
+  }
+};
+
 module.exports = {
   getBooks,
   addBook,
   addBookAuthorRelation,
+  getBookAuthorRelations,
 };

@@ -2,62 +2,49 @@
   "books": [
     {
       "id": 1,
-      "title": "Libro 1",
-      "chapters": 10,
-      "pages": 200
+      "title": "Cien años de soledad",
+      "chapters": 20,
+      "pages": 450,
+      "nameAuthor": "Gabriel García Márquez"
     },
     {
       "id": 2,
-      "title": "Libro 2",
-      "chapters": 15,
-      "pages": 300
+      "title": "1984",
+      "chapters": 12,
+      "pages": 328,
+      "nameAuthor": "George Orwell"
     },
     {
-      "title": "Libro 3",
-      "chapters": 11,
-      "pages": 250,
-      "id": 3
+      "id": 3,
+      "title": "El señor de los anillos",
+      "chapters": 30,
+      "pages": 1200,
+      "nameAuthor": "J.R.R. Tolkien"
+    },
+    {
+      "title": "Crimen y castigo",
+      "chapters": 24,
+      "pages": 430,
+      "nameAuthor": "Fyodor Dostoevsky",
+      "id": 4
     }
   ],
   "authors": [
     {
       "id": 1,
-      "name": "Autor 1"
+      "name": "Gabriel García Márquez"
     },
     {
       "id": 2,
-      "name": "Autor 2"
+      "name": "George Orwell"
     },
     {
-      "id": 3
+      "id": 3,
+      "name": "J.R.R. Tolkien"
     },
     {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "name": "Mario vargas llosa",
-      "id": 6
-    },
-    {
-      "name": "Cesar vallejos",
-      "id": 7
-    }
-  ],
-  "bookAuthorRelations": [
-    {
-      "bookId": 1,
-      "authorId": 1
-    },
-    {
-      "bookId": 1,
-      "authorId": 2
-    },
-    {
-      "bookId": 2,
-      "authorId": 2
+      "id": 4,
+      "name": "Fyodor Dostoevsky"
     }
   ]
 }

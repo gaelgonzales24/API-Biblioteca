@@ -26,5 +26,11 @@ router.get('/', (req, res) => {
   res.json(books);
 });
 
+router.get('/bookAuthorRelations', (req, res) => {
+  const bookAuthorRelations = booksController.getBookAuthorRelations();
+  res.header('Content-Type', 'application/json');
+  res.json(bookAuthorRelations);
+})
+
 
 module.exports = router;
