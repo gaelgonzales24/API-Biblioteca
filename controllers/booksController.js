@@ -64,6 +64,8 @@ const getAveragePagesPerChapterById = (bookId) => {
 
     return {
       bookId: book.id,
+      chapters: book.chapters,
+      pages: book.pages,
       averagePagesPerChapter: averagePagesPerChapter.toString(),
     };
   } catch (error) {
