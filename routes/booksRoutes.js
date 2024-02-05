@@ -27,7 +27,17 @@ router.get('/bookAuthorRelations', (req, res) => {
   const bookAuthorRelations = booksController.getBookAuthorRelations();
   res.header('Content-Type', 'application/json');
   res.json(bookAuthorRelations);
-})
+});
+
+router.get('/averagePagesPerChapter', (req, res) => {
+  const result = booksController.getAveragePagesPerChapter();
+
+  if (result) {
+    res.json(result);
+  } else {
+    res.status(404).json({ error: 'No hay libros para calcular el promedio' });
+  }
+});
 
 
 module.exports = router;

@@ -32,22 +32,6 @@ const addBook = (newBook) => {
   }
 };
 
-const addBookAuthorRelation = (bookId, authorId) => {
-  try {
-    const rawData = fs.readFileSync(dbPath);
-    const data = JSON.parse(rawData);
-
-    data.bookAuthorRelations.push({
-      bookId: bookId,
-      authorId: authorId,
-    });
-
-    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
-  } catch (error) {
-    console.error('Error adding book-author relation:', error.message);
-  }
-};
-
 const getBookAuthorRelations = () => {
   try {
     const rawData = fs.readFileSync(dbPath);
@@ -65,9 +49,36 @@ const getBookAuthorRelations = () => {
   }
 };
 
+const getAveragePagesPerChapter = () => {
+  try {
+    const rawData = fs.readFileSync(dbPath);
+    const data = JSON.parse(rawData);
+
+    const totalBooks = data.books.length;
+
+    if (totalBooks === 0) {
+      return null;
+    }
+
+    const totalPages = data.books.reduce((acc, book) => acc + book.pages, 0);
+    const totalChapters = data.books.reduce((acc, book) => acc + book.chapters, 0);
+
+    const averagePagesPerChapter = (totalPages / totalChapters).toFixed(2);
+
+    return {
+      totalBooks,
+      averagePagesPerChapter: averagePagesPerChapter.toString(),
+    };
+  } catch (error) {
+    console.error('Error parsing JSON:', error.message);
+    return null;
+  }
+};
+
+
 module.exports = {
   getBooks,
   addBook,
-  addBookAuthorRelation,
   getBookAuthorRelations,
+  getAveragePagesPerChapter,
 };

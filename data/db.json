@@ -27,6 +27,13 @@
       "pages": 430,
       "nameAuthor": "Fyodor Dostoevsky",
       "id": 4
+    },
+    {
+      "title": "El otoño del patriarca",
+      "chapters": 20,
+      "pages": 380,
+      "nameAuthor": "Gabriel Garcia Marquez",
+      "id": 5
     }
   ],
   "authors": [
