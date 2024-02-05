@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use('/books', booksRoutes);
 app.use('/authors', authorsRoutes);
 app.use('/books/bookAuthorRelations', booksRoutes);
-app.use('/books/averagePagesPerChapter', booksRoutes);
+app.use('/books/:bookId/averagePagesPerChapter', booksRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

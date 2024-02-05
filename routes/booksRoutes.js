@@ -5,16 +5,11 @@ const authorsController = require('../controllers/authorsController');
 
 router.post('/', (req, res) => {
   const newBook = req.body;
-  const authorsIds = newBook.authors;
   const bookId = booksController.addBook(newBook);
 
-  if (authorsIds && Array.isArray(authorsIds)) {
-    authorsIds.forEach((authorId) => {
-      booksController.addBookAuthorRelation(bookId, authorId);
-    });
-  }
 
-  res.json({ message: 'Libro y autores agregados con éxito.' });
+
+  res.json({ message: 'Libro y autores agregados con éxito.', bookId });
 });
 
 router.get('/', (req, res) => {
@@ -29,15 +24,17 @@ router.get('/bookAuthorRelations', (req, res) => {
   res.json(bookAuthorRelations);
 });
 
-router.get('/averagePagesPerChapter', (req, res) => {
-  const result = booksController.getAveragePagesPerChapter();
+router.get('/:bookId/averagePagesPerChapter', (req, res) => {
+  const bookId = parseInt(req.params.bookId);
+  const result = booksController.getAveragePagesPerChapterById(bookId);
 
   if (result) {
     res.json(result);
   } else {
-    res.status(404).json({ error: 'No hay libros para calcular el promedio' });
+    res.status(404).json({ error: 'Libro no encontrado' });
   }
 });
+
 
 
 module.exports = router;

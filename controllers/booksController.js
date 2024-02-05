@@ -49,24 +49,21 @@ const getBookAuthorRelations = () => {
   }
 };
 
-const getAveragePagesPerChapter = () => {
+const getAveragePagesPerChapterById = (bookId) => {
   try {
     const rawData = fs.readFileSync(dbPath);
     const data = JSON.parse(rawData);
 
-    const totalBooks = data.books.length;
+    const book = data.books.find((book) => book.id === bookId);
 
-    if (totalBooks === 0) {
+    if (!book) {
       return null;
     }
 
-    const totalPages = data.books.reduce((acc, book) => acc + book.pages, 0);
-    const totalChapters = data.books.reduce((acc, book) => acc + book.chapters, 0);
-
-    const averagePagesPerChapter = (totalPages / totalChapters).toFixed(2);
+    const averagePagesPerChapter = (book.pages / book.chapters).toFixed(2);
 
     return {
-      totalBooks,
+      bookId: book.id,
       averagePagesPerChapter: averagePagesPerChapter.toString(),
     };
   } catch (error) {
@@ -80,5 +77,5 @@ module.exports = {
   getBooks,
   addBook,
   getBookAuthorRelations,
-  getAveragePagesPerChapter,
+  getAveragePagesPerChapterById,
 };
